@@ -105,23 +105,6 @@ def exact_match(pred, gt_list):
     em_for_this_question = metric_max_over_ground_truths(exact_match_score, pred, gt_list)
     return em_for_this_question
 
-def rough_match(pred, gt_list):
-    """Compute rough match score, i.e. whether the prediction contains one of the ground truth answers
-
-    Args:
-        pred (str): model prediction
-        gt_list (list): a list of ground truth labels
-
-    Returns:
-        int: 1 for match and 0 for not match
-    """
-    rm_for_this_question = metric_max_over_ground_truths(rough_match_score, pred, gt_list)
-    return rm_for_this_question
-
-def f1(pred, gt_list):
-    f1_for_this_question = metric_max_over_ground_truths(f1_score, pred, gt_list)
-    return f1_for_this_question
-
 def exact_match_score_math(prediction, ground_truth):
     # not normalize
     return prediction == ground_truth

@@ -35,8 +35,8 @@ if [ "$stage" = "all" ]; then
         --ft_max_seq_len 8192 \
         --ft_optimizer "adamw_torch" \
         --ft_epoch 3 \
-        --ft_train_batch_size 1 \
-        --ft_gradient_accumulation_steps 16
+        --ft_train_batch_size 4 \
+        --ft_gradient_accumulation_steps 4
 fi
 
 if [ "$stage" = "all" ]; then

@@ -1,5 +1,4 @@
 import json
-import jsonlines
 import argparse
 from toolusellm.metrics import *
 from toolusellm.utils import *
@@ -16,7 +15,6 @@ def compute_rates(result):
 
     tool_amount = {}
     
-    # note: only compatible with single-step tool usage results
     for line in lines:
         conversations = line["conversations"]
         # extract first assistant response

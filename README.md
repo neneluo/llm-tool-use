@@ -1,5 +1,5 @@
 # llm-tool-use
-[NAACL'25 Findings] Analysis of Augmenting Large Language Models with Tools in Zero-Shot
+[NAACL'25 Findings] Self-Training Large Language Models for Tool-Use Without Demonstrations
 
 ## Environment
 The details of dependencies are in `environment.yml`
@@ -15,13 +15,13 @@ python toolusellm/generate_dataset.py
 
 ### Data generation & filtering
 
-To generate training data for Supervised Fine-Tuning or Preference Fine-Tuning, below is an example of dataset `TriviaQA`:
+To generate training data for Supervised Fine-tuning or Preference Fine-tuning, below is an example on dataset `TriviaQA`:
 
-1. Data generation: specify dataset name, model name, and subset in `prompt.sh`, conduct model inference on the training set of `TriviaQA`, and then save the output JSON file to `results/triviaqa-subset-train.jsonl`;
+1. Data generation: specify dataset name, model name, and subset in `prompt.sh`, conduct model inference on the training set of `TriviaQA`, and then save the ouput json file to `results/triviaqa-subset-train.jsonl`;
 ```
 sh prompt.sh
 ```
-2. Data filtering: filter out "correct" tool-using traces with specified metric
+2. Data filtering: filter out "correct" tool-using traces with specifed metric
 
 ```
 python toolusellm/prepare_data.py \
@@ -32,18 +32,18 @@ python toolusellm/prepare_data.py \
     --dataset triviaqa
 ```
 
-### Model inference:
+### Model inference
 ```
 sh prompt.sh
 ```
 
 ### Model training
-Supervised Fine-Tuning experiments:
+Supervised Fine-tuning experiments:
 ```
 sh sft.sh
 ```
 
-Preference Fine-Tuning experiments:
+Preference Fine-tuning experiments:
 ```
 sh pft.sh
 ```
@@ -65,9 +65,9 @@ python evaluation/compute_rate.py \
 ```
 Note: specify the `${result_jsonl}` and `${dataset}` as needed.
 
-## Acknowledgement
-This repo's model inference and training codes are supported by HuggingFace `trl`,  `transformers`, and `peft`.
+### Acknowledgement
+The model inference and training codes of this repo are supported by HuggingFace `trl`,  `transformers`, and `peft`.
 The evaluation implementation of the repo incorporated codes from `mandarjoshi90/triviaqa`, `nelson-liu/lost-in-the-middle`, `EleutherAI/lm-evaluation-harness`. 
-The tool's implementation of the repo adapted codes from `ernie-research/Tool-Augmented-Reward-Model`, `lucidrains/toolformer-pytorch`.
+The tools implementation of the repo adapted codes from `ernie-research/Tool-Augmented-Reward-Model`, `lucidrains/toolformer-pytorch`.
 
 A heartfelt thank you to the authors and contributors of these projects for their invaluable work and open-source contributions! 

@@ -5,9 +5,9 @@ import jsonlines
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSeq2SeqLM, set_seed
 import torch
-from trl import DataCollatorForCompletionOnlyLM, setup_chat_format
+from trl import DataCollatorForCompletionOnlyLM
 from trl import SFTConfig, SFTTrainer, DPOConfig, DPOTrainer
-from peft import get_peft_model, LoraConfig, TaskType
+from peft import LoraConfig, TaskType
 from accelerate import PartialState
 from toolusellm.prompts import *
 from toolusellm.tools import *
@@ -253,17 +253,12 @@ class ToolUseAgent:
 
             tokenizer.pad_token = tokenizer.eos_token
 
-            # set to conversational format
-            # model, tokenizer = setup_chat_format(model, tokenizer)
-
             # define parameter efficient fine-tuning config
             peft_config = LoraConfig(
                 r=16,
                 bias="none",
                 task_type=TaskType.CAUSAL_LM
             )
-            # model = get_peft_model(model, peft_config)
-            # model.print_trainable_parameters()
 
             # train on completions only
             data_collator=DataCollatorForCompletionOnlyLM(
@@ -333,8 +328,6 @@ class ToolUseAgent:
                 bias="none",
                 task_type=TaskType.CAUSAL_LM
             )
-            # model = get_peft_model(model, peft_config)
-            # model.print_trainable_parameters()
 
             # define training arguments
             training_args = DPOConfig(
