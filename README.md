@@ -15,13 +15,13 @@ python toolusellm/generate_dataset.py
 
 ### Data generation & filtering
 
-To generate training data for Supervised Fine-tuning or Preference Fine-tuning, below is an example on dataset `TriviaQA`:
+To generate training data for supervised fine-tuning or preference fine-tuning, below is an example of dataset `TriviaQA`:
 
-1. Data generation: specify dataset name, model name, and subset in `prompt.sh`, conduct model inference on the training set of `TriviaQA`, and then save the ouput json file to `results/triviaqa-subset-train.jsonl`;
+1. Data generation: specify dataset name, model name, and subset in `prompt.sh`, conduct model inference on the training set of `TriviaQA`, and then save the output JSON file to `results/triviaqa-subset-train.jsonl`;
 ```
 sh prompt.sh
 ```
-2. Data filtering: filter out "correct" tool-using traces with specifed metric
+2. Data filtering: filter out "correct" tool-using traces with the specified metric
 
 ```
 python toolusellm/prepare_data.py \
@@ -38,12 +38,12 @@ sh prompt.sh
 ```
 
 ### Model training
-Supervised Fine-tuning experiments:
+Supervised fine-tuning experiments:
 ```
 sh sft.sh
 ```
 
-Preference Fine-tuning experiments:
+Preference fine-tuning experiments:
 ```
 sh pft.sh
 ```
